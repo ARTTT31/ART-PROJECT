@@ -3,7 +3,7 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE v4 | Dashboard</title>
+    <title>ART Workspace</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -105,17 +105,19 @@
 
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
-            <!--begin::Navbar Search-->
-            <li class="nav-item">
-              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="bi bi-search"></i>
-              </a>
-            </li>
-            <!--end::Navbar Search-->
-
             
 
-            <!--begin::Fullscreen Toggle-->
+            <li class="nav-item d-none d-md-flex align-items-center me-3">
+              <div class="bg-body-secondary rounded-pill px-3 py-1 shadow-sm d-flex align-items-center" style="border: 1px solid #e2e8f0;">
+                <i class="bi bi-clock-fill text-primary me-2"></i>
+                <span id="realtime-clock" class="fw-bold" style="color: #334155; font-size: 0.85rem; letter-spacing: 0.5px;">
+                  กำลังโหลดเวลา...
+                </span>
+              </div>
+            </li>
+            
+
+
             <li class="nav-item">
               <a class="nav-link" href="#" data-lte-toggle="fullscreen">
                 <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
@@ -124,56 +126,8 @@
             </li>
             <!--end::Fullscreen Toggle-->
 
-            <!--begin::User Menu Dropdown-->
-            <li class="nav-item dropdown user-menu">
-              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img
-                  src="./assets/img/user2-160x160.jpg"
-                  class="user-image rounded-circle shadow"
-                  alt="User Image"
-                />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <!--begin::User Image-->
-                <li class="user-header text-bg-primary">
-                  <img
-                    src="./assets/img/user2-160x160.jpg"
-                    class="rounded-circle shadow"
-                    alt="User Image"
-                  />
-                  <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2023</small>
-                  </p>
-                </li>
-                <!--end::User Image-->
-                <!--begin::Menu Body-->
-                <li class="user-body">
-                  <!--begin::Row-->
-                  <div class="row">
-                    <div class="col-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-4 text-center">
-                      <a href="#">Friends</a>
-                    </div>
-                  </div>
-                  <!--end::Row-->
-                </li>
-                <!--end::Menu Body-->
-                <!--begin::Menu Footer-->
-                <li class="user-footer">
-                  <a href="#" class="btn btn-outline-secondary">Profile</a>
-                  <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
-                </li>
-                <!--end::Menu Footer-->
-              </ul>
-            </li>
-            <!--end::User Menu Dropdown-->
+            
+           
           </ul>
           <!--end::End Navbar Links-->
         </div>
@@ -187,14 +141,12 @@
           <!--begin::Brand Link-->
           <a href="./index.html" class="brand-link">
             <!--begin::Brand Image-->
-            <img
-              src="./assets/img/AdminLTELogo.png"
-              alt="AdminLTE Logo"
-              class="brand-image opacity-75 shadow"
-            />
+            <i class="bi bi-laptop ms-1 me-2 text-info" style="font-size: 1.5rem;"></i>
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">AdminLTE 4</span>
+            <span class="brand-text fw-bold text-white" style="letter-spacing: 1px;">
+              ART <span style="color: #38bdf8;">Workspace</span>
+            </span>
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->
@@ -203,38 +155,45 @@
         <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">
           
-          <nav class="mt-2">
-  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    
-    <li class="nav-header text-uppercase">Work Systems</li>
-    
-    <li class="nav-item">
-      <a href="https://abss-oga.my.salesforce.com/..." target="_blank" class="nav-link">
-        <i class="nav-icon bi bi-cloud-arrow-up-fill text-primary"></i>
-        <p>
-          Salesforce
-          <span class="badge badge-info float-end" style="font-size: 0.6rem; background-color: #e0f2fe; color: #0369a1;">External</span>
-        </p>
-      </a>
-    </li>
+          <nav class="mt-3 px-2"> <ul class="nav nav-pills nav-sidebar flex-column custom-sidebar-menu" data-widget="treeview" role="menu" data-accordion="false">
+              
+          
 
-    <li class="nav-item">
-      <a href="https://hrapp.abss.co.th/..." target="_blank" class="nav-link">
-        <i class="nav-icon bi bi-person-circle text-success"></i>
-        <p>HR Onebook</p>
-      </a>
-    </li>
+              <li class="nav-header text-uppercase">Work Systems</li>
+              
+              <li class="nav-item">
+                <a href="https://abss-oga.my.salesforce.com" target="_blank" class="nav-link">
+                  <i class="nav-icon bi bi-cloud-arrow-up-fill text-primary"></i>
+                  <p>Salesforce</p>
+                </a>
+              </li>
 
-    <li class="nav-item">
-      <a href="https://pi.zebra.com/idp/SSO.saml2" target="_blank" class="nav-link">
-        <i class="nav-icon bi bi-printer-fill text-secondary"></i>
-        <p>Zebra PI SSO</p>
-      </a>
-    </li>
+              <li class="nav-item">
+                <a href="https://hrapp.abss.co.th/hr/Onebook_Account" target="_blank" class="nav-link">
+                  <i class="nav-icon bi bi-person-badge-fill text-success"></i>
+                  <p>HR Onebook</p>
+                </a>
+              </li>
 
-    
-  </ul>
-</nav>
+              <li class="nav-item">
+                <a href="https://zebra.csod.com/ui/lms-learner-home/home?tab_page_id=-200300006&tab_id=-1" target="_blank" class="nav-link">
+                  <i class="nav-icon bi bi-printer-fill text-secondary"></i>
+                  <p>Zebra Learning</p>
+                </a>
+              </li>
+
+              <li class="nav-header text-uppercase">Project</li>
+
+              <li class="nav-item">
+               <a href="https://abssprojects.github.io/my-inventory-app/" target="_blank" class="nav-link">
+               <i class="nav-icon bi bi-tags-fill text-muted"></i>
+                 <p>Lotus ESL</p>
+                 </a>
+                </li>
+
+
+            </ul>
+          </nav>
         </div>
         <!--end::Sidebar Wrapper-->
       </aside>
@@ -250,7 +209,6 @@
               <div class="col-sm-6">
                 <h3 class="mb-0">Dashboard</h3>
               </div>
-              
             </div>
             <!--end::Row-->
           </div>
@@ -259,55 +217,36 @@
         <!--end::App Content Header-->
         <!--begin::App Content-->
         <div class="app-content">
-  <div class="container-fluid">
-
-    <div class="row g-4">
-      
-      
-      <div class="row mt-4">
-  <div class="col-12">
-    <div class="card border-0 shadow-sm" style="border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0 !important;">
-      <div class="card-header bg-white border-bottom-0 pt-4 px-4">
-        <h5 class="fw-bold mb-0" style="color: #334155;">
-          <i class="bi bi-calendar3 me-2 text-primary"></i>ตารางงานประจำเดือน
-        </h5>
-      </div>
-      <div class="card-body p-0">
-        <div class="calendar-container">
-          <iframe 
-            src="https://calendar.google.com/calendar/u/0/embed?src=935e8829bdbff55e909d6f3e533ded8a03acfbc24ac08b5d8ac781ed5e07f626@group.calendar.google.com&ctz=Asia/Bangkok" 
-            style="border: 0" 
-            width="100%" 
-            height="600" 
-            frameborder="0" 
-            scrolling="no">
-          </iframe>
+          <div class="container-fluid">
+            <div class="row mt-3 mb-4"> 
+              <div class="col-12">
+                <div class="card border-0 shadow-sm" style="border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0 !important;">
+                  <div class="card-header bg-white border-bottom-0 pt-4 px-4">
+                    <h5 class="fw-bold mb-0" style="color: #334155;">
+                      <i class="bi bi-calendar3 me-2 text-primary"></i>ตารางงานประจำเดือน
+                    </h5>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="calendar-container">
+                      <iframe 
+                        src="https://calendar.google.com/calendar/u/0/embed?src=935e8829bdbff55e909d6f3e533ded8a03acfbc24ac08b5d8ac781ed5e07f626@group.calendar.google.com&ctz=Asia/Bangkok" 
+                        style="border: 0; width: 100%; display: block;" 
+                        height="600" 
+                        frameborder="0" 
+                        scrolling="no">
+                      </iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    </div>
-  </div>
-</div>
+        </div>
         <!--end::App Content-->
       </main>
       <!--end::App Main-->
-      <!--begin::Footer-->
-      <footer class="app-footer">
-        <!--begin::To the end-->
-        <div class="float-end d-none d-sm-inline">Anything you want</div>
-        <!--end::To the end-->
-        <!--begin::Copyright-->
-        <strong>
-          Copyright &copy; 2014-2026&nbsp;
-          <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
-        </strong>
-        All rights reserved.
-        <!--end::Copyright-->
-      </footer>
-      <!--end::Footer-->
+      
     </div>
     <!--end::App Wrapper-->
     <!--begin::Script-->
@@ -584,12 +523,22 @@
     font-size: 1.4rem;
   }
 
-  .bg-blue-soft { background-color: #e0f2fe; color: #0369a1; }
-  .bg-green-soft { background-color: #dcfce7; color: #15803d; }
-  .bg-slate-soft { background-color: #f1f5f9; color: #475569; }
+  .bg-blue-soft {
+    background-color: #e0f2fe;
+    color: #0369a1;
+  }
+  .bg-green-soft {
+    background-color: #dcfce7;
+    color: #15803d;
+  }
+  .bg-slate-soft {
+    background-color: #f1f5f9;
+    color: #475569;
+  }
 
   /* ปรับแต่งฟอนต์ให้ดูเข้ากับงาน */
-  h6, small {
+  h6,
+  small {
     font-family: 'Prompt', sans-serif;
   }
 
@@ -613,5 +562,99 @@
     padding: 3px 8px;
     border-radius: 20px;
   }
-  
+
+  .calendar-container iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card-body.p-0 {
+    padding: 0 !important;
+  }
+
+
+  /* หัวข้อหมวดหมู่ (ลดช่องว่างด้านบนลงให้ดูชิดขึ้น) */
+  .nav-sidebar .nav-header {
+    padding: 0.4rem 1rem 0.2rem 1rem !important; /* ปรับลด padding ให้แคบลง */
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    color: #94a3b8 !important;
+    letter-spacing: 1px;
+  }
+
+  /* ระยะห่างของแต่ละปุ่มเมนู */
+  .custom-sidebar-menu .nav-item {
+    margin-bottom: 4px; 
+  }
+
+  /* รูปแบบปุ่มเมนูทั่วไป */
+  .custom-sidebar-menu .nav-link {
+    border-radius: 10px !important; /* ขอบมนกำลังสวย */
+    padding: 10px 16px !important;
+    transition: all 0.25s ease;
+    color: #cbd5e1 !important; /* สีอักษร (Slate-300) */
+  }
+
+  /* ลูกเล่นตอนนำเมาส์ไปชี้ (Hover) */
+  .custom-sidebar-menu .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important; /* พื้นหลังสว่างขึ้นนิดๆ */
+    color: #ffffff !important;
+    transform: translateX(4px); /* เอฟเฟกต์เลื่อนขวานิดๆ */
+  }
+
+  /* จัดไอคอนให้ตรงและสวยงาม */
+  .custom-sidebar-menu .nav-icon {
+    font-size: 1.15rem;
+    margin-right: 10px;
+    width: 24px;
+    text-align: center;
+    transition: all 0.25s ease;
+  }
+
+  /* ปรับแต่ง Badge คำว่า External */
+  .custom-badge-external {
+    background-color: rgba(56, 189, 248, 0.15); /* พื้นหลังโปร่งแสง */
+    color: #38bdf8; /* ตัวอักษรสีฟ้าสว่าง */
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-weight: 500;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+  }
 </style>
+
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    
+    // ตั้งค่า Format ภาษาไทยแบบเต็ม (วัน เดือน ปี เวลา)
+    const options = { 
+      weekday: 'long', 
+      day: 'numeric', 
+      month: 'long', 
+      year: 'numeric',
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit'
+    };
+    
+    const clockElement = document.getElementById('realtime-clock');
+    if (clockElement) {
+      // ตัวอย่างผลลัพธ์: วันพุธที่ 29 เมษายน 2569 12:30:45
+      let thaiTime = now.toLocaleDateString('th-TH', options);
+      
+      // ตกแต่งนิดหน่อย: ใส่คำว่า "เวลา" เข้าไปหน้าตัวเลข
+      thaiTime = thaiTime.replace(/(\d{2}:\d{2}:\d{2})/, 'เวลา $1');
+      
+      clockElement.textContent = thaiTime;
+    }
+  }
+
+  // อัปเดตทุก 1 วินาที
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>

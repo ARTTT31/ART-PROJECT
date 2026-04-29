@@ -1,195 +1,201 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login | AdminLTE v4 Modern</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login | AdminLTE v4 Modern</title>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css" />
 
-  <style>
-    :root {
-      --bg-color: #f0f4f8;
-      --accent-blue: #00a8e8;
-      --deep-blue: #0077b6;
-      --glass-white: rgba(255, 255, 255, 0.75);
-    }
+    <style>
+      :root {
+        --bg-color: #f0f4f8;
+        --accent-blue: #00a8e8;
+        --deep-blue: #0077b6;
+        --glass-white: rgba(255, 255, 255, 0.75);
+      }
 
-    body.login-page {
-      background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%) !important;
-      font-family: 'Prompt', sans-serif;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-    }
+      body.login-page {
+        background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%) !important;
+        font-family: 'Prompt', sans-serif;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
 
-    /* ตกแต่ง Card ให้เหมือนรูปตัวอย่าง */
-    .login-box {
-      width: 450px;
-    }
+      /* ตกแต่ง Card ให้เหมือนรูปตัวอย่าง */
+      .login-box {
+        width: 450px;
+      }
 
-    .card {
-      background: var(--glass-white);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 30px !important; /* มนพิเศษแบบรูปตัวอย่าง */
-      box-shadow: 0 20px 50px rgba(0, 119, 182, 0.1);
-      padding: 20px;
-    }
+      .card {
+        background: var(--glass-white);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 30px !important; /* มนพิเศษแบบรูปตัวอย่าง */
+        box-shadow: 0 20px 50px rgba(0, 119, 182, 0.1);
+        padding: 20px;
+      }
 
-    .login-logo {
-      margin-bottom: 10px;
-    }
+      .login-logo {
+        margin-bottom: 10px;
+      }
 
-    .login-logo b {
-      color: var(--deep-blue);
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
+      .login-logo b {
+        color: var(--deep-blue);
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
 
-    .login-box-msg {
-      color: #64748b;
-      font-size: 0.9rem;
-      margin-bottom: 25px;
-    }
+      .login-box-msg {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+      }
 
-    /* Input Field สไตล์นุ่มนวล */
-    .input-group {
-      background: #ffffff;
-      border-radius: 15px !important;
-      border: 1px solid #e2e8f0;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      margin-bottom: 20px !important;
-    }
+      /* Input Field สไตล์นุ่มนวล */
+      .input-group {
+        background: #ffffff;
+        border-radius: 15px !important;
+        border: 1px solid #e2e8f0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        margin-bottom: 20px !important;
+      }
 
-    .input-group:focus-within {
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 4px rgba(0, 168, 232, 0.1);
-    }
+      .input-group:focus-within {
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 4px rgba(0, 168, 232, 0.1);
+      }
 
-    .form-control {
-      border: none !important;
-      padding: 15px 20px !important;
-      background: transparent !important;
-      font-size: 0.95rem;
-    }
+      .form-control {
+        border: none !important;
+        padding: 15px 20px !important;
+        background: transparent !important;
+        font-size: 0.95rem;
+      }
 
-    .input-group-text {
-      background: transparent !important;
-      border: none !important;
-      color: var(--accent-blue);
-      padding-right: 20px;
-    }
+      .input-group-text {
+        background: transparent !important;
+        border: none !important;
+        color: var(--accent-blue);
+        padding-right: 20px;
+      }
 
-    /* ปุ่ม Login สีฟ้าไล่เฉด */
-    .btn-login {
-      background: linear-gradient(to right, #00b4d8, #0077b6);
-      border: none;
-      border-radius: 15px;
-      padding: 14px;
-      color: white;
-      font-weight: 500;
-      width: 100%;
-      margin-top: 10px;
-      box-shadow: 0 10px 20px rgba(0, 119, 182, 0.2);
-      transition: all 0.3s ease;
-    }
+      /* ปุ่ม Login สีฟ้าไล่เฉด */
+      .btn-login {
+        background: linear-gradient(to right, #00b4d8, #0077b6);
+        border: none;
+        border-radius: 15px;
+        padding: 14px;
+        color: white;
+        font-weight: 500;
+        width: 100%;
+        margin-top: 10px;
+        box-shadow: 0 10px 20px rgba(0, 119, 182, 0.2);
+        transition: all 0.3s ease;
+      }
 
-    .btn-login:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 25px rgba(0, 119, 182, 0.3);
-      filter: brightness(1.1);
-    }
+      .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 25px rgba(0, 119, 182, 0.3);
+        filter: brightness(1.1);
+      }
 
-    /* ลิงก์และ Checkbox */
-    .form-check-label {
-      color: #64748b;
-      font-size: 0.85rem;
-    }
+      /* ลิงก์และ Checkbox */
+      .form-check-label {
+        color: #64748b;
+        font-size: 0.85rem;
+      }
 
-    .forgot-link {
-      color: var(--accent-blue);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
+      .forgot-link {
+        color: var(--accent-blue);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
 
-    .signup-link {
-      color: var(--deep-blue);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
+      .signup-link {
+        color: var(--deep-blue);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
 
-    /* ตกแต่งไอคอน Logo ด้านบน */
-    .logo-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #00b4d8, #0077b6);
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 15px;
-      color: white;
-      font-size: 2rem;
-      box-shadow: 0 8px 15px rgba(0, 180, 216, 0.3);
-    }
-  </style>
-</head>
+      /* ตกแต่งไอคอน Logo ด้านบน */
+      .logo-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #00b4d8, #0077b6);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        color: white;
+        font-size: 2rem;
+        box-shadow: 0 8px 15px rgba(0, 180, 216, 0.3);
+      }
+    </style>
+  </head>
 
-<body class="login-page">
-  <div class="login-box">
-    <div class="card">
-      <div class="card-body">
-        <div class="logo-icon">
-          <i class="bi bi-person-badge-fill"></i>
-        </div>
-        
-        <div class="login-logo text-center">
-          <a href="#"><b>ART</b> PROJECT</a>
-        </div>
-        <p class="login-box-msg text-center">LOGIN | Welcome back to system</p>
-
-        <form action="../dist/index.html" method="post">
-          <div class="input-group">
-            <input type="email" class="form-control" placeholder="Email Address">
-            <div class="input-group-text">
-              <i class="bi bi-envelope"></i>
-            </div>
+  <body class="login-page">
+    <div class="login-box">
+      <div class="card">
+        <div class="card-body">
+          <div class="logo-icon">
+            <i class="bi bi-person-badge-fill"></i>
           </div>
 
-          <div class="input-group">
-            <input type="password" class="form-control" placeholder="Password">
-            <div class="input-group-text">
-              <i class="bi bi-eye"></i>
-            </div>
+          <div class="login-logo text-center">
+            <a href="#"><b>ART</b> PROJECT</a>
           </div>
+          <p class="login-box-msg text-center">LOGIN | Welcome back to system</p>
 
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="remember">
-              <label class="form-check-label" for="remember">Keep me logged in</label>
+          <form action="../dist/index.html" method="post">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Email Address" />
+              <div class="input-group-text">
+                <i class="bi bi-envelope"></i>
+              </div>
             </div>
-            <a href="#" class="forgot-link">ลืมรหัสผ่าน?</a>
+
+            <div class="input-group">
+              <input type="password" class="form-control" placeholder="Password" />
+              <div class="input-group-text">
+                <i class="bi bi-eye"></i>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="remember" />
+                <label class="form-check-label" for="remember">Keep me logged in</label>
+              </div>
+              <a href="#" class="forgot-link">ลืมรหัสผ่าน?</a>
+            </div>
+
+            <button type="submit" class="btn btn-login">เข้าสู่ระบบ (LOGIN)</button>
+          </form>
+
+          <div class="text-center mt-4">
+            <a href="#" class="signup-link">Sign up for a new account</a>
           </div>
-
-          <button type="submit" class="btn btn-login">เข้าสู่ระบบ (LOGIN)</button>
-        </form>
-
-        <div class="text-center mt-4">
-          <a href="#" class="signup-link">Sign up for a new account</a>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-  <script src="../dist/js/adminlte.min.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="../dist/js/adminlte.min.js"></script>
+  </body>
 </html>
