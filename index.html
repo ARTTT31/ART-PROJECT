@@ -1,12 +1,161 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset='utf-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <title>AdminLTE v4</title>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-</head>
-<body>
-  <script>window.location.href = './dist/index.html'</script>
-</body>
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login | ART PROJECT</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="./dist/css/adminlte.min.css" />
+
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        --glass-bg: rgba(255, 255, 255, 0.85);
+      }
+
+      body.login-page {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
+        font-family: 'Prompt', sans-serif;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
+
+      .login-box { width: 400px; }
+
+      .card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 24px !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+        padding: 30px 15px;
+      }
+
+      .logo-icon {
+        width: 64px; height: 64px;
+        background: var(--primary-gradient);
+        border-radius: 18px;
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 20px;
+        color: white; font-size: 2rem;
+        box-shadow: 0 10px 15px -3px rgba(2, 132, 199, 0.3);
+      }
+
+      .login-logo { font-size: 1.5rem; margin-bottom: 35px; }
+      .login-logo b { color: #0f172a; font-weight: 700; }
+      .login-logo span { color: #0284c7; }
+
+      .input-group {
+        background: #f8fafc;
+        border-radius: 12px !important;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 15px !important;
+      }
+
+      .form-control { border: none !important; padding: 14px 18px !important; background: transparent !important; }
+
+      .btn-login {
+        background: var(--primary-gradient);
+        border: none; border-radius: 12px;
+        padding: 14px; color: white; font-weight: 600;
+        width: 100%; margin-top: 10px;
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body class="login-page">
+    <div class="login-box">
+      <div class="card">
+        <div class="card-body px-4">
+          <div class="logo-icon"><i class="bi bi-shield-lock-fill"></i></div>
+          <div class="login-logo text-center">
+            <a href="#" class="text-decoration-none"><b>ART</b> <span>PROJECT</span></a>
+          </div>
+
+          <form id="loginForm">
+            <div class="input-group">
+              <input type="email" id="email" class="form-control" placeholder="Email Address" required />
+              <div class="input-group-text"><i class="bi bi-envelope-at"></i></div>
+            </div>
+            <div class="input-group">
+              <input type="password" id="password" class="form-control" placeholder="Password" required />
+              <div class="input-group-text"><i class="bi bi-lock"></i></div>
+            </div>
+            <button type="submit" id="loginBtn" class="btn btn-login mt-3">เข้าสู่ระบบ</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx9m8d9h04r5MfaF1JuJwQSyABJTZABQDzUHOCQU_Q6mgiuR9xFqrjpk6nO29snPL2VCg/exec'; 
+
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('loginBtn');
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>กำลังตรวจสอบ...';
+
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ email: email, password: password })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.result === 'success') {
+            // เช็คว่า Swal โหลดมาหรือยัง
+            if (typeof Swal !== 'undefined') {
+              Swal.fire({
+                icon: 'success',
+                title: 'เข้าสู่ระบบสำเร็จ!',
+                text: 'ยินดีต้อนรับเข้าสู่ระบบ ART PROJECT',
+                timer: 1000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                allowOutsideClick: false
+              }).then(() => {
+                window.location.href = "dashboard.html";
+              });
+            } else {
+              // ถ้า Swal ไม่โหลด ให้เด้ง alert ธรรมดาแล้วไปหน้าถัดไปเลย
+              alert('เข้าสู่ระบบสำเร็จ!');
+              window.location.href = "dashboard.html";
+            }
+          } else {
+            if (typeof Swal !== 'undefined') {
+              Swal.fire({
+                icon: 'error',
+                title: 'ล็อกอินไม่สำเร็จ',
+                text: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
+                confirmButtonColor: '#0284c7'
+              });
+            } else {
+              alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
+            }
+            btn.disabled = false;
+            btn.innerText = 'เข้าสู่ระบบ';
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          alert('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+          btn.disabled = false;
+          btn.innerText = 'เข้าสู่ระบบ';
+        });
+      });
+    </script>
+  </body>
 </html>
