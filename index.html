@@ -4,12 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | ART Workspace</title>
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="./dist/css/adminlte.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <style>
       :root { --primary-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); --glass-bg: rgba(255, 255, 255, 0.85); }
       body.login-page { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important; font-family: 'Prompt', sans-serif; height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0; }
@@ -24,7 +22,6 @@
       .btn-login { background: var(--primary-gradient); border: none; border-radius: 12px; padding: 14px; color: white; font-weight: 600; width: 100%; margin-top: 10px; transition: all 0.3s ease; }
     </style>
   </head>
-
   <body class="login-page">
     <div class="login-box">
       <div class="card">
@@ -45,17 +42,13 @@
         </div>
       </div>
     </div>
-
     <script>
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx9m8d9h04r5MfaF1JuJwQSyABJTZABQDzUHOCQU_Q6mgiuR9xFqrjpk6nO29snPL2VCg/exec'; 
-
       document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('loginBtn');
         btn.disabled = true;
-        // กลับมาแสดงข้อความโหลดเหมือนเดิมตามคำขอ
         btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>กำลังตรวจสอบ...';
-
         fetch(SCRIPT_URL, {
           method: 'POST',
           body: JSON.stringify({ email: document.getElementById('email').value, password: document.getElementById('password').value })
@@ -63,27 +56,23 @@
         .then(res => res.json())
         .then(data => {
           if (data.result === 'success') {
-            // ปรับข้อความแจ้งเตือนให้ละเอียดขึ้น
+            // สร้างกุญแจ Session (Security Guard)
+            sessionStorage.setItem('isLoggedIn', 'true');
             Swal.fire({
-              icon: 'success',
-              title: 'เข้าสู่ระบบสำเร็จ!',
-              text: 'กำลังพาท่านเข้าสู่หน้า ART Workspace',
-              showConfirmButton: false,
-              timer: 1000,
-              timerProgressBar: true
+              icon: 'success', title: 'เข้าสู่ระบบสำเร็จ!', text: 'กำลังพาท่านเข้าสู่หน้า ART Workspace',
+              showConfirmButton: false, timer: 1000, timerProgressBar: true
             }).then(() => {
-              window.location.href = "./dist/Dashboard.html"; 
+              // พาวิ่งไปที่โฟลเดอร์ /dist/ เพื่อซ่อนชื่อไฟล์
+              window.location.href = "./dist/"; 
             });
           } else {
             Swal.fire({ icon: 'error', title: 'ผิดพลาด', text: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง' });
-            btn.disabled = false;
-            btn.innerText = 'เข้าสู่ระบบ';
+            btn.disabled = false; btn.innerText = 'เข้าสู่ระบบ';
           }
         })
         .catch(err => {
           Swal.fire({ icon: 'warning', title: 'Error', text: 'ไม่สามารถเชื่อมต่อฐานข้อมูลได้' });
-          btn.disabled = false;
-          btn.innerText = 'เข้าสู่ระบบ';
+          btn.disabled = false; btn.innerText = 'เข้าสู่ระบบ';
         });
       });
     </script>
