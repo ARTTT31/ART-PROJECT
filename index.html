@@ -56,8 +56,8 @@
         .then(res => res.json())
         .then(data => {
           if (data.result === 'success') {
-            // สร้างกุญแจ Session (Security Guard)
-            sessionStorage.setItem('isLoggedIn', 'true');
+               sessionStorage.setItem('isLoggedIn', 'true');
+               sessionStorage.setItem('userEmail', document.getElementById('email').value); // เพิ่มบรรทัดนี้
             Swal.fire({
               icon: 'success', title: 'เข้าสู่ระบบสำเร็จ!', text: 'กำลังพาท่านเข้าสู่หน้า ART Workspace',
               showConfirmButton: false, timer: 1000, timerProgressBar: true
