@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <script>
+      if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = '../../../index.html';
+      }
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile | ART Workspace</title>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+    />
+    <link rel="stylesheet" href="../../css/adminlte.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        font-size: 0.95rem;
+      }
+      .sidebar-brand {
+        border-bottom: 1px solid #4b5563 !important;
+        padding: 1.25rem 1rem !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .nav-sidebar .nav-header {
+        padding: 1rem 1rem 0.5rem 1rem !important;
+        font-size: 0.75rem !important;
+        color: #94a3b8 !important;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .nav-sidebar .nav-item {
+        margin: 0.2rem 0.5rem !important;
+      }
+      .nav-sidebar .nav-link {
+        display: flex !important;
+        align-items: center !important;
+        padding: 10px 15px !important;
+        border-radius: 10px !important;
+        color: #cbd5e1 !important;
+        transition: all 0.3s ease;
+      }
+      .nav-sidebar .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+        transform: translateX(5px);
+      }
+      .nav-sidebar .nav-link.active {
+        background-color: #007bff !important;
+        color: #fff !important;
+      }
+      .nav-sidebar .nav-link i {
+        font-size: 1.2rem !important;
+        margin-right: 12px !important;
+        width: 25px;
+        text-align: center;
+      }
+      .nav-sidebar .nav-link p {
+        font-size: 0.9rem !important;
+        margin: 0 !important;
+        white-space: nowrap;
+      }
+      .card-custom {
+        border-radius: 20px;
+        border: none;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        background: #fff;
+      }
+      .profile-user-img {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border: 4px solid #f8fafc;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+      .form-control {
+        border-radius: 12px;
+        padding: 10px 15px;
+        border: 1px solid #e2e8f0;
+      }
+    </style>
+  </head>
+
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+      <nav class="app-header navbar navbar-expand bg-body shadow-sm">
+        <div class="container-fluid">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"
+                ><i class="bi bi-list text-primary"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <aside class="app-sidebar bg-dark shadow" data-bs-theme="dark">
+        <div class="sidebar-brand">
+          <a href="../../" class="brand-link text-decoration-none">
+            <span class="brand-text fw-bold text-white"
+              >ART <span style="color: #38bdf8">Workspace</span></span
+            >
+          </a>
+        </div>
+        <div class="sidebar-wrapper">
+          <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
+              <li class="nav-header">User Menu</li>
+              <li class="nav-item">
+                <a href="../../" class="nav-link">
+                  <i class="nav-icon bi bi-speedometer2"></i>
+                  <p>หน้าหลัก</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./" class="nav-link active">
+                  <i class="nav-icon bi bi-person-bounding-box"></i>
+                  <p>โปรไฟล์</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="app-main">
+        <div class="app-content-header">
+          <div class="container-fluid"><h3 class="fw-bold text-dark">จัดการบัญชี</h3></div>
+        </div>
+        <div class="app-content">
+          <div class="container-fluid">
+            <div class="row g-4">
+              <div class="col-lg-4">
+                <div class="card card-custom text-center p-5">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                    class="profile-user-img rounded-circle mb-4"
+                  />
+                  <h4 class="fw-bold mb-1">คุณ ART</h4>
+                  <p class="text-primary fw-medium small">Administrator</p>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="card card-custom p-4 shadow-sm border-start border-danger border-5">
+                  <h5 class="fw-bold mb-4 border-bottom pb-2 text-danger">
+                    <i class="bi bi-shield-lock-fill me-2"></i>เปลี่ยนรหัสผ่าน
+                  </h5>
+                  <form id="changePasswordForm">
+                    <div class="mb-3">
+                      <label class="form-label small">รหัสผ่านปัจจุบัน</label>
+                      <input type="password" id="oldPassword" class="form-control" required />
+                    </div>
+                    <div class="row g-3 mb-3">
+                      <div class="col-md-6">
+                        <label class="form-label small">รหัสผ่านใหม่</label>
+                        <input type="password" id="newPassword" class="form-control" required />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label small">ยืนยันรหัสผ่านใหม่</label>
+                        <input type="password" id="confirmPassword" class="form-control" required />
+                      </div>
+                    </div>
+                    <div class="text-end">
+                      <button
+                        type="submit"
+                        id="saveBtn"
+                        class="btn btn-danger px-5 rounded-pill fw-bold"
+                      >
+                        บันทึกรหัสผ่านใหม่
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="../../js/adminlte.js"></script>
+    <script>
+      // ใช้ URL ล่าสุดที่คุณ ART ให้มา
+      const SCRIPT_URL =
+        'https://script.google.com/macros/s/AKfycbx4G1fmRckSs2VsfTtnU95WWKvCDdrbcMhCxsQuX3HR4CJh0L9k66glIY5hTJmOcTmLTQ/exec';
+
+      document.getElementById('changePasswordForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // --- จุดที่แก้ไข: ดึงอีเมลจากคนที่ล็อกอินเข้ามาจริงๆ ---
+        const userEmail = sessionStorage.getItem('userEmail');
+        const oldPass = document.getElementById('oldPassword').value;
+        const newPass = document.getElementById('newPassword').value;
+        const confirmPass = document.getElementById('confirmPassword').value;
+        const btn = document.getElementById('saveBtn');
+
+        // ตรวจสอบเบื้องต้นว่ามีอีเมลในระบบไหม
+        if (!userEmail) {
+          Swal.fire('ผิดพลาด', 'ไม่พบข้อมูลการล็อกอิน กรุณาล็อกอินใหม่', 'error').then(() => {
+            window.location.href = '../../../index.html';
+          });
+          return;
+        }
+
+        if (newPass !== confirmPass) {
+          Swal.fire('ผิดพลาด', 'รหัสผ่านใหม่ไม่ตรงกัน', 'error');
+          return;
+        }
+
+        if (newPass.length < 6) {
+          Swal.fire('คำแนะนำ', 'รหัสผ่านใหม่ควรมีอย่างน้อย 6 ตัวอักษร', 'warning');
+          return;
+        }
+
+        btn.disabled = true;
+        btn.innerHTML =
+          '<span class="spinner-border spinner-border-sm"></span> กำลังบันทึกข้อมูล...';
+
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'changePassword',
+            email: userEmail, // ส่งอีเมลที่ดึงมาจาก Session
+            oldPassword: oldPass,
+            newPassword: newPass,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.result === 'success') {
+              Swal.fire({
+                icon: 'success',
+                title: 'สำเร็จ!',
+                text: 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว กรุณาเข้าสู่ระบบใหม่อีกครั้ง',
+                timer: 2000,
+                showConfirmButton: false,
+              }).then(() => {
+                // ล้างข้อมูลการล็อกอินทั้งหมดออก
+                sessionStorage.clear();
+                window.location.href = '../../../index.html';
+              });
+            } else {
+              // แจ้งเตือนกรณีรหัสผ่านเดิมผิด หรือไม่พบอีเมลใน Sheet
+              Swal.fire('ผิดพลาด', data.message || 'ข้อมูลไม่ถูกต้อง', 'error');
+              btn.disabled = false;
+              btn.innerText = 'บันทึกรหัสผ่านใหม่';
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            Swal.fire('Error', 'ไม่สามารถเชื่อมต่อฐานข้อมูลได้', 'error');
+            btn.disabled = false;
+            btn.innerText = 'บันทึกรหัสผ่านใหม่';
+          });
+      });
+    </script>
+  </body>
+</html>

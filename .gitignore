@@ -1,14 +1,33 @@
 # ไฟล์จากระบบปฏิบัติการ
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# ไฟล์จากโปรแกรมเขียนโค้ด
+# ไฟล์จากโปรแกรมเขียนโค้ด (VS Code / Notepad++)
 .vscode/
 .idea/
+*.suo
+*.ntf
+*.log
 
-# ไฟล์จากพวก Node.js (ถ้าในอนาคตคุณใช้)
+# ไฟล์จาก Node.js
 node_modules/
-dist/
+# ปลดล็อก dist ออกเพื่อให้ GitHub Actions เห็นไฟล์ CSS/JS
+# dist/ 
 
-# ไฟล์ความลับ
+# ไฟล์ความลับ (สำคัญมาก ห้ามเอาขึ้น GitHub)
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ไฟล์พวกบีบอัดต่างๆ
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
