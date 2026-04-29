@@ -158,9 +158,10 @@
   </body>
 </html>
 
+
 <script>
-  // วาง URL ที่ได้จาก Google Apps Script ตรงนี้
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVLOGC4ypB6ZTWFq44MSt4fji7knJaU08tP2fuytuXO35BSX_uTdagwswlH4c7cSIzaA/exec';
+  // วาง URL ใหม่ที่คุณเพิ่งก๊อปมาจากการ Deploy ล่าสุด
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx9m8d9h04r5MfaF1JuJwQSyABJTZABQDzUHOCQU_Q6mgiuR9xFqrjpk6nO29snPL2VCg/exec'; 
 
   document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -172,24 +173,25 @@
     btn.disabled = true;
     btn.innerText = 'กำลังตรวจสอบ...';
 
+    // ส่งข้อมูลแบบปกติ (ห้ามใช้ no-cors ในขั้นตอนนี้เพื่อให้ได้ผลลัพธ์กลับมาเช็ค)
     fetch(SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify({ email: email, password: password })
     })
-    .then(res => res.json())
+    .then(res => res.json()) // รับค่า JSON กลับมา
     .then(data => {
       if (data.result === 'success') {
-        // ล็อกอินสำเร็จ: ไปที่หน้าหลัก
+        // ถ้าผ่าน ให้เด้งไปหน้า index
         window.location.href = "../dist/index.html"; 
       } else {
-        alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
+        alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง (เช็คตัวเล็ก-ใหญ่ด้วยนะครับ)');
         btn.disabled = false;
         btn.innerText = 'เข้าสู่ระบบ';
       }
     })
     .catch(err => {
       console.error(err);
-      alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับระบบ');
+      alert('เกิดข้อผิดพลาด: โปรดตรวจสอบว่าได้ตั้งค่าสิทธิ์เป็น Anyone หรือยัง?');
       btn.disabled = false;
       btn.innerText = 'เข้าสู่ระบบ';
     });
