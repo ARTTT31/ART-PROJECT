@@ -31,13 +31,14 @@
         font-size: 0.95rem;
       }
 
-      /* --- Sidebar Brand Styling --- */
+      /* บังคับขนาดหัวเมนู */
       .sidebar-brand {
+        height: 60px;
         border-bottom: 1px solid #4b5563 !important;
-        padding: 1.25rem 1rem !important;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 1.25rem 1rem !important;
       }
       .sidebar-brand .brand-text {
         font-size: 1.2rem;
@@ -61,10 +62,9 @@
       .nav-sidebar .nav-link {
         display: flex !important;
         align-items: center !important;
-        padding: 10px 15px !important;
+        padding: 6px 15px !important;
         border-radius: 10px !important;
         color: #cbd5e1 !important;
-        transition: all 0.3s ease;
       }
 
       .nav-sidebar .nav-link:hover {
@@ -117,7 +117,7 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"
-                ><i class="bi bi-list"></i
+                ><i class="bi bi-list text-primary"></i
               ></a>
             </li>
             <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
@@ -197,6 +197,15 @@
                   <p>Zebra Learning</p>
                 </a>
               </li>
+
+              <li class="nav-header">Project</li>
+              <li class="nav-item">
+                <a href="https://abssprojects.github.io/my-inventory-app/" target="_blank" class="nav-link">
+                  <i class="bi bi-cloud-arrow-up-fill text-primary"></i>
+                  <p>Lotus ESL</p>
+                </a>
+              </li>
+
 
               <li class="nav-header">System</li>
               <li class="nav-item">
