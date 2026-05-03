@@ -30,13 +30,22 @@
         font-family: 'Prompt', sans-serif;
         font-size: 0.95rem;
       }
+
+      /* --- บังคับขนาดหัวเมนู --- */
       .sidebar-brand {
+        height: 60px;
         border-bottom: 1px solid #4b5563 !important;
-        padding: 1.25rem 1rem !important;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 1.25rem 1rem !important;
       }
+      .sidebar-brand .brand-text {
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+      }
+
+      /* --- ปรับแต่งเมนูฝั่งซ้าย --- */
       .nav-sidebar .nav-header {
         padding: 1rem 1rem 0.5rem 1rem !important;
         font-size: 0.75rem !important;
@@ -51,19 +60,15 @@
       .nav-sidebar .nav-link {
         display: flex !important;
         align-items: center !important;
-        padding: 10px 15px !important;
+        padding: 8px 15px !important;
         border-radius: 10px !important;
         color: #cbd5e1 !important;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
       }
       .nav-sidebar .nav-link:hover {
         background-color: rgba(255, 255, 255, 0.1) !important;
         color: #ffffff !important;
         transform: translateX(5px);
-      }
-      .nav-sidebar .nav-link.active {
-        background-color: #007bff !important;
-        color: #fff !important;
       }
       .nav-sidebar .nav-link i {
         font-size: 1.2rem !important;
@@ -76,30 +81,92 @@
         margin: 0 !important;
         white-space: nowrap;
       }
+
+      /* --- เมนูที่ถูกเลือก (Active State) --- */
+      .nav-sidebar .nav-link.active {
+        background: linear-gradient(90deg, #0ea5e9, #2563eb) !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3) !important;
+        border-radius: 10px !important;
+      }
+
+      /* --- การ์ดและโปรไฟล์ (Cards & Profile) --- */
       .card-custom {
         border-radius: 20px;
         border: none;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
         background: #fff;
+        transition: all 0.3s ease;
+        overflow: hidden; /* เพื่อให้ cover ไม่ล้นขอบการ์ด */
       }
+      .card-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.12);
+      }
+
+      /* แถบสีด้านบนของการ์ดโปรไฟล์ */
+      .profile-cover {
+        background: linear-gradient(135deg, #0ea5e9, #2563eb);
+        height: 100px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+      }
+      .profile-content {
+        position: relative;
+        z-index: 1;
+        margin-top: 30px;
+      }
+
       .profile-user-img {
-        width: 130px;
-        height: 130px;
+        width: 120px;
+        height: 120px;
         object-fit: cover;
-        border: 4px solid #f8fafc;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        border: 5px solid #ffffff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
       }
+
+      /* --- ฟอร์มเปลี่ยนรหัสผ่าน --- */
       .form-control {
         border-radius: 12px;
-        padding: 10px 15px;
+        padding: 12px 15px;
         border: 1px solid #e2e8f0;
+        transition: all 0.2s;
+        background-color: #f8fafc;
+      }
+      .form-control:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+        background-color: #ffffff;
+      }
+
+      /* ปรับแต่งปุ่มให้เป็น Gradient */
+      .btn-danger-custom {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        border: none;
+        color: white;
+        box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+        transition: all 0.3s ease;
+      }
+      .btn-danger-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(239, 68, 68, 0.4);
+        color: white;
+      }
+      .btn-danger-custom:disabled {
+        background: #94a3b8;
+        box-shadow: none;
+        transform: none;
       }
     </style>
   </head>
 
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
-      <nav class="app-header navbar navbar-expand bg-body shadow-sm">
+      <nav class="app-header navbar navbar-expand bg-body shadow-sm border-bottom-0">
         <div class="container-fluid">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -125,7 +192,7 @@
               <li class="nav-header">User Menu</li>
               <li class="nav-item">
                 <a href="../../" class="nav-link">
-                  <i class="nav-icon bi bi-speedometer2"></i>
+                  <i class="bi bi-grid-1x2-fill"></i>
                   <p>หน้าหลัก</p>
                 </a>
               </li>
@@ -140,7 +207,8 @@
                 <a
                   href="https://docs.google.com/spreadsheets/d/1v55MZRnWXiPCgUeGAABWpxTjqKvG-RwSxkym4pbsjUA/edit?gid=0#gid=0"
                   target="_blank"
-                  class="nav-link text-success">
+                  class="nav-link text-success"
+                >
                   <i class="bi bi-table"></i>
                   <p>จัดการ Database</p>
                 </a>
@@ -152,60 +220,82 @@
 
       <main class="app-main">
         <div class="app-content-header">
-          <div class="container-fluid"><h3 class="fw-bold text-dark">จัดการบัญชี</h3></div>
+          <div class="container-fluid">
+            <h3 class="fw-bold text-dark mb-0">จัดการบัญชี</h3>
+          </div>
         </div>
         <div class="app-content">
           <div class="container-fluid">
             <div class="row g-4">
+              
+              <!-- ฝั่งซ้าย: โปรไฟล์ -->
               <div class="col-lg-4">
-                <div class="card card-custom text-center p-5">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                    class="profile-user-img rounded-circle mb-4"
-                  />
-                  <h4 class="fw-bold mb-1">คุณ ART</h4>
-                  <p class="text-primary fw-medium small">Administrator</p>
+                <div class="card card-custom text-center pb-5 position-relative">
+                  <div class="profile-cover"></div>
+                  <div class="profile-content">
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                      class="profile-user-img rounded-circle mb-3"
+                      alt="User Profile"
+                    />
+                    <h4 class="fw-bold mb-1" style="color: #1e293b;">คุณ ART</h4>
+                    <span class="badge bg-primary-subtle text-primary fw-medium px-3 py-2 rounded-pill mt-1">
+                      Administrator
+                    </span>
+                  </div>
                 </div>
               </div>
+
+              <!-- ฝั่งขวา: ฟอร์มเปลี่ยนรหัสผ่าน -->
               <div class="col-lg-8">
                 <div class="card card-custom p-4 shadow-sm border-start border-danger border-5">
-                  <h5 class="fw-bold mb-4 border-bottom pb-2 text-danger">
-                    <i class="bi bi-shield-lock-fill me-2"></i>เปลี่ยนรหัสผ่าน
-                  </h5>
-                  <form id="changePasswordForm">
-                    <div class="mb-3">
-                      <label class="form-label small">รหัสผ่านปัจจุบัน</label>
-                      <input type="password" id="oldPassword" class="form-control" required />
-                    </div>
-                    <div class="row g-3 mb-3">
-                      <div class="col-md-6">
-                        <label class="form-label small">รหัสผ่านใหม่</label>
-                        <input type="password" id="newPassword" class="form-control" required />
+                  <div class="card-body">
+                    <h5 class="fw-bold mb-4 pb-3 text-danger border-bottom border-light">
+                      <i class="bi bi-shield-lock-fill me-2"></i>เปลี่ยนรหัสผ่าน
+                    </h5>
+                    
+                    <form id="changePasswordForm">
+                      <div class="mb-4">
+                        <label class="form-label text-muted fw-medium small mb-1">รหัสผ่านปัจจุบัน</label>
+                        <input type="password" id="oldPassword" class="form-control" placeholder="กรอกรหัสผ่านปัจจุบันของคุณ" required />
                       </div>
-                      <div class="col-md-6">
-                        <label class="form-label small">ยืนยันรหัสผ่านใหม่</label>
-                        <input type="password" id="confirmPassword" class="form-control" required />
+                      
+                      <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                          <label class="form-label text-muted fw-medium small mb-1">รหัสผ่านใหม่</label>
+                          <input type="password" id="newPassword" class="form-control" placeholder="อย่างน้อย 6 ตัวอักษร" required />
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label text-muted fw-medium small mb-1">ยืนยันรหัสผ่านใหม่</label>
+                          <input type="password" id="confirmPassword" class="form-control" placeholder="กรอกรหัสผ่านใหม่อีกครั้ง" required />
+                        </div>
                       </div>
-                    </div>
-                    <div class="text-end">
-                      <button
-                        type="submit"
-                        id="saveBtn"
-                        class="btn btn-danger px-5 rounded-pill fw-bold"
-                      >
-                        บันทึกรหัสผ่านใหม่
-                      </button>
-                    </div>
-                  </form>
+
+                      <div class="text-end mt-2">
+                        <button
+                          type="submit"
+                          id="saveBtn"
+                          class="btn btn-danger-custom px-5 py-2 rounded-pill fw-bold"
+                        >
+                          <i class="bi bi-floppy-fill me-2"></i>บันทึกรหัสผ่านใหม่
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="../../js/adminlte.js"></script>
+    
     <script>
       // ใช้ URL ล่าสุดที่คุณ ART ให้มา
       const SCRIPT_URL =
@@ -214,7 +304,6 @@
       document.getElementById('changePasswordForm').addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // --- จุดที่แก้ไข: ดึงอีเมลจากคนที่ล็อกอินเข้ามาจริงๆ ---
         const userEmail = sessionStorage.getItem('userEmail');
         const oldPass = document.getElementById('oldPassword').value;
         const newPass = document.getElementById('newPassword').value;
@@ -240,14 +329,13 @@
         }
 
         btn.disabled = true;
-        btn.innerHTML =
-          '<span class="spinner-border spinner-border-sm"></span> กำลังบันทึกข้อมูล...';
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>กำลังบันทึก...';
 
         fetch(SCRIPT_URL, {
           method: 'POST',
           body: JSON.stringify({
             action: 'changePassword',
-            email: userEmail, // ส่งอีเมลที่ดึงมาจาก Session
+            email: userEmail,
             oldPassword: oldPass,
             newPassword: newPass,
           }),
@@ -262,24 +350,34 @@
                 timer: 2000,
                 showConfirmButton: false,
               }).then(() => {
-                // ล้างข้อมูลการล็อกอินทั้งหมดออก
                 sessionStorage.clear();
                 window.location.href = '../../../index.html';
               });
             } else {
-              // แจ้งเตือนกรณีรหัสผ่านเดิมผิด หรือไม่พบอีเมลใน Sheet
               Swal.fire('ผิดพลาด', data.message || 'ข้อมูลไม่ถูกต้อง', 'error');
               btn.disabled = false;
-              btn.innerText = 'บันทึกรหัสผ่านใหม่';
+              btn.innerHTML = '<i class="bi bi-floppy-fill me-2"></i>บันทึกรหัสผ่านใหม่';
             }
           })
           .catch((err) => {
             console.error(err);
             Swal.fire('Error', 'ไม่สามารถเชื่อมต่อฐานข้อมูลได้', 'error');
             btn.disabled = false;
-            btn.innerText = 'บันทึกรหัสผ่านใหม่';
+            btn.innerHTML = '<i class="bi bi-floppy-fill me-2"></i>บันทึกรหัสผ่านใหม่';
           });
       });
+
+      // ปรับแต่ง OverlayScrollbars สำหรับ Sidebar เหมือนหน้า Dashboard
+      const sidebarWrapper = document.querySelector('.sidebar-wrapper');
+      if (sidebarWrapper) {
+        OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+          scrollbars: {
+            theme: 'os-theme-light',
+            autoHide: 'leave',
+            clickScroll: true,
+          },
+        });
+      }
     </script>
   </body>
 </html>

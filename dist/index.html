@@ -10,18 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard | ART Workspace</title>
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" />
     <link rel="stylesheet" href="./css/adminlte.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -29,9 +20,9 @@
       body {
         font-family: 'Prompt', sans-serif;
         font-size: 0.95rem;
+        background-color: #f1f5f9;
       }
 
-      /* บังคับขนาดหัวเมนู */
       .sidebar-brand {
         height: 60px;
         border-bottom: 1px solid #4b5563 !important;
@@ -45,7 +36,6 @@
         letter-spacing: 0.5px;
       }
 
-      /* --- ปรับแต่งเมนูฝั่งซ้ายให้ตรงแถวและสวยงาม --- */
       .nav-sidebar .nav-header {
         padding: 1rem 1rem 0.5rem 1rem !important;
         font-size: 0.75rem !important;
@@ -54,65 +44,131 @@
         text-transform: uppercase;
         font-weight: 700;
       }
-
       .nav-sidebar .nav-item {
         margin: 0.2rem 0.5rem !important;
       }
-
       .nav-sidebar .nav-link {
         display: flex !important;
         align-items: center !important;
-        padding: 6px 15px !important;
+        padding: 8px 15px !important;
         border-radius: 10px !important;
         color: #cbd5e1 !important;
+        transition: all 0.2s ease;
       }
-
       .nav-sidebar .nav-link:hover {
         background-color: rgba(255, 255, 255, 0.1) !important;
         color: #ffffff !important;
         transform: translateX(5px);
       }
-
       .nav-sidebar .nav-link i {
         font-size: 1.2rem !important;
         margin-right: 12px !important;
         width: 25px;
         text-align: center;
       }
-
       .nav-sidebar .nav-link p {
         font-size: 0.9rem !important;
         margin: 0 !important;
         white-space: nowrap;
       }
-
-      /* --- Dashboard Header & Calendar --- */
-      .app-content-header {
-        padding: 1.5rem 0;
+      .nav-sidebar .nav-link.active {
+        background: linear-gradient(90deg, #0ea5e9, #2563eb) !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3) !important;
+        border-radius: 10px !important;
       }
-      .calendar-card {
+
+      .premium-card {
         border-radius: 20px;
         overflow: hidden;
         border: none !important;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+        background: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .premium-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.08);
       }
 
-      #realtime-clock {
-        min-width: 250px;
+      .weather-card {
+        background: linear-gradient(135deg, #0ea5e9, #2563eb);
+        color: white;
+        position: relative;
+      }
+      .weather-card::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+        transform: rotate(30deg);
+        pointer-events: none;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 14px;
+      }
+
+      .oil-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 15px 12px;
+        transition: all 0.2s ease;
         text-align: center;
       }
+      .oil-item:hover {
+        background: #ffffff;
+        border-color: #cbd5e1;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        transform: translateY(-2px);
+      }
+      .oil-dot {
+        width: 10px; height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 6px;
+      }
 
-      /* ปุ่มออกจากระบบพิเศษ */
-      #logoutBtn:hover {
-        background-color: rgba(239, 68, 68, 0.2) !important;
-        color: #ef4444 !important;
+      .clock-wrapper {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        border-radius: 50rem;
+        padding: 0.5rem 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.1); opacity: 0.7; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .bi-clock-fill.animated { animation: pulse 2s infinite ease-in-out; }
+
+      /* Custom Drag & Drop */
+      .drag-handle {
+        cursor: grab;
+      }
+      .drag-handle:active {
+        cursor: grabbing;
+      }
+      .sortable-ghost {
+        opacity: 0.4;
+        transform: scale(0.98);
       }
     </style>
   </head>
 
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
-      <nav class="app-header navbar navbar-expand bg-body shadow-sm">
+      
+      <!-- Navbar -->
+      <nav class="app-header navbar navbar-expand bg-body shadow-sm border-bottom-0">
         <div class="container-fluid">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -120,57 +176,43 @@
                 ><i class="bi bi-list text-primary"></i
               ></a>
             </li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
           </ul>
-
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item d-none d-md-flex align-items-center me-3">
-              <div
-                class="bg-body-secondary rounded-pill px-4 py-2 shadow-sm d-flex align-items-center"
-                style="border: 1px solid #e2e8f0"
-              >
-                <i class="bi bi-clock-fill text-primary me-2"></i>
-                <span id="realtime-clock" class="fw-bold" style="color: #334155; font-size: 0.85rem"
-                  >กำลังโหลดเวลา...</span
-                >
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item d-none d-md-flex me-3">
+              <div class="clock-wrapper">
+                <i class="bi bi-clock-fill text-primary me-2 animated"></i>
+                <span id="realtime-clock" class="fw-bold" style="color: #475569; font-size: 0.85rem">กำลังโหลดเวลา...</span>
               </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-lte-toggle="fullscreen"
-                ><i class="bi bi-arrows-fullscreen"></i
-              ></a>
             </li>
           </ul>
         </div>
       </nav>
 
+      <!-- Sidebar -->
       <aside class="app-sidebar bg-dark shadow" data-bs-theme="dark">
         <div class="sidebar-brand">
-          <a href="././" class="brand-link text-decoration-none">
-            <span class="brand-text fw-bold text-white"
-              >ART <span style="color: #38bdf8">Workspace</span></span
-            >
+          <a href="./index.html" class="brand-link text-decoration-none">
+            <span class="brand-text fw-bold text-white">ART <span style="color: #38bdf8">Workspace</span></span>
           </a>
         </div>
-
         <div class="sidebar-wrapper">
           <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+            <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
               <li class="nav-header">User Menu</li>
               <li class="nav-item">
                 <a href="./index.html" class="nav-link active">
-                  <i class="bi bi-speedometer2"></i>
+                  <i class="bi bi-grid-1x2-fill"></i>
                   <p>หน้าหลัก</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="./pages/profile/index.html" class="nav-link">
-                  <i class="bi bi-person-bounding-box"></i>
+                  <i class="nav-icon bi bi-person-bounding-box"></i>
                   <p>โปรไฟล์</p>
                 </a>
               </li>
 
-              <li class="nav-header">Work Systems</li>
+              <li class="nav-header mt-2">Work Systems</li>
               <li class="nav-item">
                 <a href="https://abss-oga.my.salesforce.com" target="_blank" class="nav-link">
                   <i class="bi bi-cloud-arrow-up-fill text-primary"></i>
@@ -178,36 +220,27 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  href="https://hrapp.abss.co.th/hr/Onebook_Account"
-                  target="_blank"
-                  class="nav-link"
-                >
+                <a href="https://hrapp.abss.co.th/hr/Onebook_Account" target="_blank" class="nav-link">
                   <i class="bi bi-person-badge-fill text-success"></i>
                   <p>HR Onebook</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  href="https://zebra.csod.com/ui/lms-learner-home/home"
-                  target="_blank"
-                  class="nav-link"
-                >
+                <a href="https://zebra.csod.com/ui/lms-learner-home/home" target="_blank" class="nav-link">
                   <i class="bi bi-printer-fill text-secondary"></i>
                   <p>Zebra Learning</p>
                 </a>
               </li>
 
-              <li class="nav-header">Project</li>
+              <li class="nav-header mt-2">Project</li>
               <li class="nav-item">
                 <a href="https://abssprojects.github.io/my-inventory-app/" target="_blank" class="nav-link">
-                  <i class="bi bi-cloud-arrow-up-fill text-primary"></i>
+                  <i class="bi bi-upc-scan text-success"></i>
                   <p>Lotus ESL</p>
                 </a>
               </li>
 
-
-              <li class="nav-header">System</li>
+              <li class="nav-header mt-2">System</li>
               <li class="nav-item">
                 <a href="#" id="logoutBtn" class="nav-link">
                   <i class="bi bi-box-arrow-right text-danger"></i>
@@ -219,70 +252,438 @@
         </div>
       </aside>
 
-      <main class="app-main">
-        <div class="app-content-header">
+      <!-- Main Content -->
+      <main class="app-main pt-3">
+        <div class="app-content-header pb-3">
           <div class="container-fluid">
-            <div class="row">
-              <div class="col-sm-6">
-                <h3 class="mb-0 fw-bold" style="color: #1e293b">หน้าหลัก</h3>
-              </div>
-            </div>
+            <h3 class="mb-0 fw-bold" style="color: #0f172a; font-size: 1.75rem;">ภาพรวมการทำงาน</h3>
           </div>
         </div>
 
         <div class="app-content">
           <div class="container-fluid">
-            <div class="card calendar-card">
-              <div class="card-header bg-white border-bottom-0 pt-4 px-4">
-                <h5 class="fw-bold mb-0" style="color: #334155">
-                  <i class="bi bi-calendar3 me-2 text-primary"></i>ตารางงานประจำเดือน
-                </h5>
+            
+            <!-- พื้นที่ Widget ที่สามารถลากสลับตำแหน่งได้ -->
+            <div class="row g-4 mb-4" id="sortable-widgets">
+              
+              <!-- 1. วิดเจ็ตสภาพอากาศ -->
+              <div class="col-lg-5 sortable-item" data-id="widget-weather">
+                <div class="premium-card weather-card h-100 p-4 d-flex flex-column justify-content-between">
+                  <div class="d-flex justify-content-between align-items-start mb-2 drag-handle">
+                    <div>
+                      <h5 class="fw-bold mb-1" id="locationLabel">กรุงเทพมหานคร</h5>
+                      <p class="mb-0 opacity-75 small">รีเฟรชใน: <span id="weatherCountdown">05:00</span></p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 ms-auto">
+                      <i class="bi bi-geo-alt-fill fs-4 opacity-75" id="locationIcon"></i>
+                      <i class="bi bi-grip-vertical fs-4 ms-2 opacity-50" title="ลากเพื่อย้ายตำแหน่ง"></i>
+                    </div>
+                  </div>
+                  
+                  <div class="d-flex align-items-center justify-content-center gap-4 my-3">
+                    <i id="weatherIcon" class="bi bi-cloud-sun display-2 text-white" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));"></i>
+                    <div>
+                      <h1 id="temperature" class="fw-bold mb-0" style="font-size: 4rem; letter-spacing: -2px; line-height: 1;">--°</h1>
+                      <p id="weatherDesc" class="fs-5 fw-medium opacity-75 mb-0">กำลังโหลด...</p>
+                    </div>
+                  </div>
+                  
+                  <div class="row g-2">
+                    <div class="col-6">
+                      <div class="glass-panel p-2 text-center">
+                        <p class="mb-0 small opacity-75">ลม (km/h)</p>
+                        <h6 id="windSpeed" class="fw-bold mb-0">--</h6>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="glass-panel p-2 text-center">
+                        <p class="mb-0 small opacity-75">ชื้น (%)</p>
+                        <h6 id="humidity" class="fw-bold mb-0">--</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="card-body p-0">
-                <iframe
-                  src="https://calendar.google.com/calendar/u/0/embed?src=935e8829bdbff55e909d6f3e533ded8a03acfbc24ac08b5d8ac781ed5e07f626@group.calendar.google.com&ctz=Asia/Bangkok"
-                  style="border: 0; width: 100%; height: 750px; display: block"
-                  frameborder="0"
-                  scrolling="no"
-                ></iframe>
+              
+              <!-- 2. วิดเจ็ตราคาน้ำมัน (แก้ ms-auto แล้ว) -->
+              <div class="col-lg-7 sortable-item" data-id="widget-oil">
+                <div class="premium-card h-100 d-flex flex-column border-top border-warning border-4">
+                  <div class="card-header bg-white border-bottom-0 pt-4 px-4 pb-2 d-flex align-items-center drag-handle">
+                    <div class="d-flex align-items-center">
+                      <div class="bg-warning-subtle p-2 rounded-3 me-3">
+                        <i class="bi bi-fuel-pump-fill text-warning fs-5"></i>
+                      </div>
+                      <div>
+                        <h5 class="fw-bold mb-0 text-dark">ราคาน้ำมันวันนี้</h5>
+                        <p class="text-muted small mb-0">อ้างอิงราคาปลีก ปตท. (บาท/ลิตร)</p>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 ms-auto">
+                      <button class="btn btn-sm btn-light rounded-circle shadow-sm" id="refreshOilBtn" title="อัปเดตข้อมูล"><i class="bi bi-arrow-clockwise"></i></button>
+                      <i class="bi bi-grip-vertical fs-4 text-muted ms-2" title="ลากเพื่อย้ายตำแหน่ง"></i>
+                    </div>
+                  </div>
+                  
+                  <div class="card-body px-4 pb-4 pt-3">
+                    <div id="oilPriceList" class="row g-3">
+                      <div class="col-12 text-center py-4 text-muted">
+                        <div class="spinner-border spinner-border-sm text-warning me-2" role="status"></div>
+                        กำลังโหลดข้อมูล...
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+
+              <!-- 3. วิดเจ็ต To-Do List -->
+              <div class="col-lg-5 sortable-item" data-id="widget-todo">
+                <div class="premium-card h-100 d-flex flex-column border-top border-primary border-4">
+                  <div class="card-header bg-white border-bottom-0 pt-4 px-4 pb-2 d-flex align-items-center drag-handle">
+                    <div class="d-flex align-items-center">
+                      <div class="bg-primary-subtle p-2 rounded-3 me-3">
+                        <i class="bi bi-ui-checks text-primary fs-5"></i>
+                      </div>
+                      <div>
+                        <h5 class="fw-bold mb-0 text-dark">To-Do List</h5>
+                        <p class="text-muted small mb-0">รายการสิ่งที่ต้องทำ</p>
+                      </div>
+                    </div>
+                    <i class="bi bi-grip-vertical fs-4 text-muted ms-auto" title="ลากเพื่อย้ายตำแหน่ง"></i>
+                  </div>
+                  
+                  <div class="card-body px-4 pb-4 pt-2 d-flex flex-column">
+                    <div class="input-group mb-3 shadow-sm" style="border-radius: 10px; overflow: hidden;">
+                      <input type="text" id="todoInput" class="form-control border-0 bg-light" placeholder="เพิ่มงานใหม่..." style="box-shadow: none;">
+                      <button class="btn btn-primary px-3" id="addTodoBtn"><i class="bi bi-plus-lg fw-bold"></i></button>
+                    </div>
+                    <ul class="list-group list-group-flush flex-grow-1" id="todoList" style="max-height: 250px; overflow-y: auto;">
+                      <!-- รายการจะถูกแทรกที่นี่ด้วย JS -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. วิดเจ็ต Project Progress Tracker -->
+              <div class="col-lg-7 sortable-item" data-id="widget-progress">
+                <div class="premium-card h-100 d-flex flex-column border-top border-info border-4">
+                  <div class="card-header bg-white border-bottom-0 pt-4 px-4 pb-2 d-flex align-items-center drag-handle">
+                    <div class="d-flex align-items-center">
+                      <div class="bg-info-subtle p-2 rounded-3 me-3">
+                        <i class="bi bi-bar-chart-steps text-info fs-5"></i>
+                      </div>
+                      <div>
+                        <h5 class="fw-bold mb-0 text-dark">Project Tracker</h5>
+                        <p class="text-muted small mb-0">ติดตามความคืบหน้างาน/เอกสาร</p>
+                      </div>
+                    </div>
+                    <i class="bi bi-grip-vertical fs-4 text-muted ms-auto" title="ลากเพื่อย้ายตำแหน่ง"></i>
+                  </div>
+                  
+                  <div class="card-body px-4 pb-4 pt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <label class="fw-bold text-dark mb-0">ความคืบหน้าโดยรวม</label>
+                      <span id="progressText" class="badge bg-info fs-6 rounded-pill">0%</span>
+                    </div>
+                    <input type="range" class="form-range my-3" id="progressSlider" min="0" max="100" step="1" value="0">
+                    
+                    <div class="progress mb-4" style="height: 12px; border-radius: 10px; background-color: #f1f5f9;">
+                      <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" id="progressBar" role="progressbar" style="width: 0%;"></div>
+                    </div>
+
+                    <label class="fw-bold text-dark mb-2 small"><i class="bi bi-journal-text me-1"></i> บันทึกสถานะ / งานที่ค้างอยู่</label>
+                    <textarea id="progressNotes" class="form-control border-0 p-3" style="background-color: #f8fafc; resize: none; height: 100px; border-radius: 12px; font-size: 0.95rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);" placeholder="เช่น: ทำคู่มือถึงหน้าที่ 10 แล้ว, ยังขาดรูปประกอบหน้า 8, รอพี่เอตรวจ..."></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. วิดเจ็ตปฏิทิน -->
+              <div class="col-12 sortable-item" data-id="widget-calendar">
+                <div class="premium-card">
+                  <div class="card-header bg-white border-bottom-0 pt-4 px-4 d-flex align-items-center drag-handle justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <div class="bg-primary-subtle p-2 rounded-3 me-3">
+                        <i class="bi bi-calendar-event-fill text-primary fs-5"></i>
+                      </div>
+                      <h5 class="fw-bold mb-0 text-dark">ตารางงานประจำเดือน</h5>
+                    </div>
+                    <i class="bi bi-grip-vertical fs-4 text-muted ms-auto" title="ลากเพื่อย้ายตำแหน่ง"></i>
+                  </div>
+                  <div class="card-body p-0 mt-2">
+                    <iframe
+                      src="https://calendar.google.com/calendar/u/0/embed?src=935e8829bdbff55e909d6f3e533ded8a03acfbc24ac08b5d8ac781ed5e07f626@group.calendar.google.com&ctz=Asia/Bangkok"
+                      style="border: 0; width: 100%; height: 750px; display: block;"
+                      frameborder="0"
+                      scrolling="no"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+
             </div>
+            <!-- สิ้นสุดพื้นที่ Widget -->
+
           </div>
         </div>
       </main>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="./js/adminlte.js"></script>
+    <!-- เพิ่ม SortableJS สำหรับระบบลากวาง -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
     <script>
-      // 1. จัดการเวลา Real-time
+      // ==========================================
+      // --- 1. ระบบเวลา ---
+      // ==========================================
       function updateClock() {
         const now = new Date();
-        const options = {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-        };
+        const dateOptions = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
         const clockElement = document.getElementById('realtime-clock');
         if (clockElement) {
-          let thaiTime = now.toLocaleDateString('th-TH', options);
-          if (!thaiTime.includes('เวลา'))
-            thaiTime = thaiTime.replace(/(\d{2}:\d{2}:\d{2})/, 'เวลา $1');
-          clockElement.textContent = thaiTime;
+          clockElement.textContent = `${now.toLocaleDateString('th-TH', dateOptions)} | ${now.toLocaleTimeString('th-TH', timeOptions)}`;
         }
       }
       setInterval(updateClock, 1000);
       updateClock();
 
-      // 2. ระบบออกจากระบบ
+      // ==========================================
+      // --- 2. ระบบสภาพอากาศ ---
+      // ==========================================
+      let currentLat = 13.7540; 
+      let currentLon = 100.5014;
+      let weatherTimer = 300; 
+
+      async function fetchWeather() {
+        try {
+          const url = `https://api.open-meteo.com/v1/forecast?latitude=${currentLat}&longitude=${currentLon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=Asia/Bangkok`;
+          const response = await fetch(url);
+          const data = await response.json();
+          const current = data.current;
+          
+          document.getElementById('temperature').innerText = `${Math.round(current.temperature_2m)}°`;
+          document.getElementById('windSpeed').innerText = `${current.wind_speed_10m}`;
+          document.getElementById('humidity').innerText = `${current.relative_humidity_2m}`;
+          
+          let desc = "แจ่มใส", icon = "bi-sun-fill";
+          const code = current.weather_code;
+          if (code === 0) { desc = "ท้องฟ้าแจ่มใส"; icon = "bi-sun-fill"; } 
+          else if (code >= 1 && code <= 3) { desc = "มีเมฆบางส่วน"; icon = "bi-cloud-sun-fill"; } 
+          else if (code >= 45 && code <= 48) { desc = "มีหมอกบาง"; icon = "bi-cloud-haze-fill"; } 
+          else if (code >= 51 && code <= 67) { desc = "ฝนตกประปราย"; icon = "bi-cloud-drizzle-fill"; } 
+          else if (code >= 80 && code <= 82) { desc = "ฝนตกหนัก"; icon = "bi-cloud-rain-heavy-fill"; } 
+          else if (code >= 95 && code <= 99) { desc = "พายุฝน"; icon = "bi-cloud-lightning-rain-fill"; }
+          
+          document.getElementById('weatherDesc').innerText = desc;
+          document.getElementById('weatherIcon').className = `bi ${icon} display-2 text-white`;
+          weatherTimer = 300; 
+        } catch (error) {
+          console.error("Weather Error:", error);
+        }
+      }
+
+      function initWeather() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            currentLat = position.coords.latitude;
+            currentLon = position.coords.longitude;
+            document.getElementById('locationLabel').innerText = "ตำแหน่งปัจจุบันของคุณ";
+            document.getElementById('locationIcon').classList.add('text-warning');
+            fetchWeather();
+          }, () => {
+            fetchWeather(); 
+          });
+        } else {
+          fetchWeather();
+        }
+      }
+
+      setInterval(() => {
+        weatherTimer--;
+        const mins = Math.floor(weatherTimer / 60);
+        const secs = weatherTimer % 60;
+        document.getElementById('weatherCountdown').innerText = 
+          `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        
+        if (weatherTimer <= 0) {
+          fetchWeather();
+        }
+      }, 1000);
+
+      initWeather();
+
+      // ==========================================
+      // --- 3. ระบบราคาน้ำมัน ---
+      // ==========================================
+      function renderOilPrices(dataArray) {
+        const oilList = document.getElementById('oilPriceList');
+        let html = '';
+        dataArray.forEach(oil => {
+          html += `
+            <div class="col-6 col-md-4">
+              <div class="oil-item h-100 d-flex flex-column justify-content-center">
+                <div class="d-flex align-items-center justify-content-center mb-1">
+                  <span class="oil-dot" style="background-color: ${oil.color};"></span>
+                  <span class="text-muted small fw-medium">${oil.name}</span>
+                </div>
+                <div class="fw-bold text-dark" style="font-size: 1.3rem;">${oil.price}</div>
+              </div>
+            </div>
+          `;
+        });
+        oilList.innerHTML = html;
+      }
+
+      async function fetchOilPrices() {
+        const fallbackData = [
+          { name: "เบนซิน", price: "52.89", color: "#ef4444" },
+          { name: "แก๊ส 95", price: "43.30", color: "#f97316" },
+          { name: "แก๊ส 91", price: "42.93", color: "#eab308" },
+          { name: "E20", price: "36.30", color: "#22c55e" },
+          { name: "E85", price: "32.24", color: "#10b981" },
+          { name: "ดีเซล", price: "40.80", color: "#3b82f6" }
+        ];
+
+        try {
+          const response = await fetch('https://api.chnwt.dev/thai-oil-api/latest', { cache: 'no-store' });
+          const data = await response.json();
+          const pttPrices = data.response.stations.ptt.prices;
+          
+          const oilData = [
+            { name: "เบนซิน", price: pttPrices["Gasoline 95"]?.price || "52.89", color: "#ef4444" },
+            { name: "แก๊ส 95", price: pttPrices["Gasohol 95"]?.price || "43.30", color: "#f97316" },
+            { name: "แก๊ส 91", price: pttPrices["Gasohol 91"]?.price || "42.93", color: "#eab308" },
+            { name: "E20", price: pttPrices["Gasohol E20"]?.price || "36.30", color: "#22c55e" },
+            { name: "E85", price: pttPrices["Gasohol E85"]?.price || "32.24", color: "#10b981" },
+            { name: "ดีเซล", price: pttPrices["Diesel"]?.price || "40.80", color: "#3b82f6" }
+          ];
+          renderOilPrices(oilData);
+        } catch (error) {
+          renderOilPrices(fallbackData);
+        }
+      }
+      
+      fetchOilPrices();
+      document.getElementById('refreshOilBtn').addEventListener('click', fetchOilPrices);
+
+      // ==========================================
+      // --- 4. ระบบ To-Do List (Auto-save) ---
+      // ==========================================
+      const todoInput = document.getElementById('todoInput');
+      const addTodoBtn = document.getElementById('addTodoBtn');
+      const todoList = document.getElementById('todoList');
+      let todos = JSON.parse(localStorage.getItem('artWorkspaceTodos')) || [];
+
+      function saveTodos() {
+        localStorage.setItem('artWorkspaceTodos', JSON.stringify(todos));
+      }
+
+      function renderTodos() {
+        if (!todoList) return;
+        todoList.innerHTML = '';
+        todos.forEach((todo, index) => {
+          const li = document.createElement('li');
+          
+          // 1. แก้ตรงนี้: เปลี่ยน px-0 เป็น px-2 เพื่อเว้นระยะขอบซ้าย-ขวาให้ List
+          li.className = 'list-group-item d-flex justify-content-between align-items-center border-0 px-2 py-2 border-bottom';
+          
+          li.innerHTML = `
+            <div class="d-flex align-items-center w-100">
+              <!-- 2. แก้ตรงนี้: เพิ่ม ms-1 (Margin Start) เข้าไปที่ class ของ input เพื่อดันกล่องหลบขอบซ้ายเข้ามาอีกนิด -->
+              <input class="form-check-input ms-1 me-3 mt-0" type="checkbox" onchange="toggleTodo(${index})" ${todo.completed ? 'checked' : ''} style="cursor: pointer; transform: scale(1.2); border: 1.5px solid #94a3b8;">
+              
+              <span class="${todo.completed ? 'text-decoration-line-through text-muted' : 'text-dark'}" style="cursor: pointer; user-select: none;" onclick="toggleTodo(${index})">
+                ${todo.text}
+              </span>
+              <button class="btn btn-sm btn-link text-danger ms-auto p-0" onclick="deleteTodo(${index})">
+                <i class="bi bi-trash3-fill"></i>
+              </button>
+            </div>
+          `;
+          todoList.appendChild(li);
+        });
+      }
+
+      function addTodo() {
+        const text = todoInput.value.trim();
+        if (text) {
+          todos.push({ text: text, completed: false });
+          todoInput.value = '';
+          saveTodos();
+          renderTodos();
+        }
+      }
+
+      if (addTodoBtn) {
+        addTodoBtn.addEventListener('click', addTodo);
+        todoInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') addTodo();
+        });
+      }
+
+      window.toggleTodo = function(index) {
+        todos[index].completed = !todos[index].completed;
+        saveTodos();
+        renderTodos();
+      }
+
+      window.deleteTodo = function(index) {
+        todos.splice(index, 1);
+        saveTodos();
+        renderTodos();
+      }
+
+      renderTodos(); 
+
+      // ========================================================
+      // --- 5. ระบบ Project Progress Tracker (Auto-save) ---
+      // ========================================================
+      const progressSlider = document.getElementById('progressSlider');
+      const progressBar = document.getElementById('progressBar');
+      const progressText = document.getElementById('progressText');
+      const progressNotes = document.getElementById('progressNotes');
+
+      if (progressSlider && progressNotes) {
+        const savedProgress = JSON.parse(localStorage.getItem('artWorkspaceProgress')) || { percent: 0, note: '' };
+        
+        progressSlider.value = savedProgress.percent;
+        progressBar.style.width = savedProgress.percent + '%';
+        progressText.innerText = savedProgress.percent + '%';
+        progressNotes.value = savedProgress.note;
+
+        const updateAndSaveProgress = () => {
+          const currentPercent = progressSlider.value;
+          const currentNote = progressNotes.value;
+          
+          progressBar.style.width = currentPercent + '%';
+          progressText.innerText = currentPercent + '%';
+          
+          if(currentPercent == 100) {
+            progressBar.className = "progress-bar bg-success progress-bar-striped progress-bar-animated";
+            progressText.className = "badge bg-success fs-6 rounded-pill";
+          } else {
+            progressBar.className = "progress-bar bg-info progress-bar-striped progress-bar-animated";
+            progressText.className = "badge bg-info fs-6 rounded-pill";
+          }
+
+          localStorage.setItem('artWorkspaceProgress', JSON.stringify({
+            percent: currentPercent,
+            note: currentNote
+          }));
+        };
+
+        progressSlider.addEventListener('input', updateAndSaveProgress);
+        progressNotes.addEventListener('input', updateAndSaveProgress);
+        updateAndSaveProgress();
+      }
+
+      // ==========================================
+      // --- 6. ระบบ Logout ---
+      // ==========================================
       document.getElementById('logoutBtn').addEventListener('click', function (e) {
         e.preventDefault();
         Swal.fire({
@@ -295,30 +696,42 @@
         }).then((result) => {
           if (result.isConfirmed) {
             sessionStorage.clear();
-            Swal.fire({
-              title: 'สำเร็จ!',
-              text: 'กำลังกลับไปที่หน้า Login',
-              icon: 'success',
-              timer: 1500,
-              showConfirmButton: false,
-            }).then(() => {
-              window.location.href = '../';
-            });
+            window.location.href = '../index.html';
           }
         });
       });
 
-      // 3. ปรับแต่ง OverlayScrollbars สำหรับ Sidebar
-      const sidebarWrapper = document.querySelector('.sidebar-wrapper');
-      if (sidebarWrapper) {
-        OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
-          scrollbars: {
-            theme: 'os-theme-light',
-            autoHide: 'leave',
-            clickScroll: true,
-          },
-        });
-      }
+      // ==========================================
+      // --- 7. ระบบลากวาง จัดเลย์เอาต์ (SortableJS) ---
+      // ==========================================
+      document.addEventListener('DOMContentLoaded', function () {
+        const widgetContainer = document.getElementById('sortable-widgets');
+
+        if (widgetContainer) {
+          const savedOrder = JSON.parse(localStorage.getItem('artWorkspaceWidgetOrder'));
+          
+          if (savedOrder) {
+            const itemsArray = Array.from(widgetContainer.children);
+            savedOrder.forEach(id => {
+              const item = itemsArray.find(el => el.getAttribute('data-id') === id);
+              if (item) {
+                widgetContainer.appendChild(item); 
+              }
+            });
+          }
+
+          new Sortable(widgetContainer, {
+            animation: 200,             
+            handle: '.drag-handle',     
+            ghostClass: 'sortable-ghost', 
+            onEnd: function () {
+              const itemEls = widgetContainer.querySelectorAll('.sortable-item');
+              const newOrder = Array.from(itemEls).map(el => el.getAttribute('data-id'));
+              localStorage.setItem('artWorkspaceWidgetOrder', JSON.stringify(newOrder));
+            },
+          });
+        }
+      });
     </script>
   </body>
 </html>
